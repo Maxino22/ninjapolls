@@ -9,12 +9,12 @@
 	<div class="poll">
 		<h3>{poll.question}</h3>
 		<p>Total votes: {totalVotes}</p>
-		<div class="answer">
+		<div on:click={()=> handleVote('a', poll.id)} class="answer">
 			<div class="percent percent-a">
 				<span>{poll.answerA} ({poll.votesA})</span>
 			</div>
 		</div>
-		<div class="answer">
+		<div on:click={} class="answer">
 			<div class="percent percent-b">
 				<span>{poll.answerB} ({poll.votesB})</span>
 			</div>
