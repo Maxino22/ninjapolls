@@ -29,13 +29,33 @@
 		polls = [poll, ...polls]
 		activeItem = 'Current Polls'
 	}
+
+
+	const handleVote = (e: Event) =>{
+		const { id , option}  = (e as CustomEvent<any>).detail
+
+			let copiedPolls = [...polls]
+
+			let upvotedPoll = copiedPolls.find((poll)=>poll.id == id)
+
+
+			if (option === 'a') {
+				upvotedPoll.votesA++
+			}
+			if (option === 'b') {
+				upvotedPoll.votesB++
+			}
+		
+
+			polls = copiedPolls
+	}
 </script>
 
 <Header />
 <main>
 	<Tabs on:tabChange={tabChange} {items} {activeItem} />
 	{#if activeItem === 'Current Polls'}
-		<PollList {polls} />
+		<PollList on:vote={handleVote} {polls} />
 	{:else}
 		<CreatePollForm on:add={handleAdd} />
 	{/if}
